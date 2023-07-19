@@ -69,6 +69,11 @@
     font-size: 12px;
 }
 
+.post-content ul,
+.post-content p {
+    font-family: SUITE-Regular;
+}
+
 .post-content a,
 .toc a:hover {
     box-shadow: 0 1px 0;
@@ -308,6 +313,7 @@
     border-radius: var(--radius);
     background: var(--code-bg);
     border: 1px solid var(--border);
+    font-family: SUITE-Regular;
 }
 
 .post-tags a {
