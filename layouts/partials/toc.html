@@ -8,7 +8,7 @@
                 <span class="details">{{- i18n "toc" | default "Table of Contents" }}</span>
             </summary>
 
-        <div class="inner">
+        <div class="inner"  style="padding-top: 10px;">
             {{- if (.Param "UseHugoToc") }}
             {{- .TableOfContents -}}
             {{- else }}
