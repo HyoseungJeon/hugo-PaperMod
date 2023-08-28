@@ -77,10 +77,15 @@
 }
 
 .post-content a,
+
+.toc a {
+    transition: 200ms;
+}
+
 .toc a:hover {
-    box-shadow: 0 1px 0;
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
+    font-size: large;
+        transition: 200ms;
+        text-decoration: none;
 }
 
 .post-content a code {
@@ -311,6 +316,14 @@
 
 .active {
     font-weight: 600;
+}
+.active::after{
+    content: '';
+    display: inline-block;
+    border: 7px solid transparent;
+    border-right-color: var(--primary);
+    position:absolute;
+    margin-top: 5px;
 }
 
 .toc ul {
