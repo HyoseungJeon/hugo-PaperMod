@@ -84,8 +84,8 @@
 
 .toc a:hover {
     font-size: large;
-        transition: 200ms;
-        text-decoration: none;
+    transition: 200ms;
+    text-decoration: none;
 }
 
 .post-content a code {
