@@ -65,11 +65,11 @@ body:not(.dark) #sun {
 
 #menu .active {
     font-weight: 1000;
-    color: #fff;
+    color: var(--primary);
         text-shadow:
-          0 0 5px #fff,
-          0 0 10px #fff,
-          0 0 20px #fff
+          0 0 5px var(--primary),
+          0 0 10px var(--primary),
+          0 0 20px var(--primary)
 }
 
 .lang-switch li,
@@ -105,7 +105,7 @@ body:not(.dark) #sun {
     content: "";
     position: absolute;
     width: 0;
-    background : #fff;
+    background : var(--primary);
     left: 45%;
     height: 2px;
     bottom: 8px;
