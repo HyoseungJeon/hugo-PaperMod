@@ -57,17 +57,19 @@ body:not(.dark) #sun {
     white-space: nowrap;
 }
 
-#menu li + li {
-    margin-inline-start: var(--gap);
-}
-
 #menu a {
     font-size: 16px;
+    padding: 0px 15px;
+    margin: 0px 9px;
 }
 
 #menu .active {
-    font-weight: 500;
-    border-bottom: 2px solid currentColor;
+    font-weight: 1000;
+    color: #fff;
+        text-shadow:
+          0 0 5px #fff,
+          0 0 10px #fff,
+          0 0 20px #fff
 }
 
 .lang-switch li,
@@ -91,3 +93,28 @@ body:not(.dark) #sun {
 .logo-switches {
     flex-wrap: inherit;
 }
+
+
+.btn-12 {
+    text-align: center;
+    position:relative;
+    overflow:hidden;
+}
+  
+.btn-12:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    background : #fff;
+    left: 45%;
+    height: 2px;
+    bottom: 8px;
+    transition: all .3s;
+    opacity: 0.7;
+}
+  
+.btn-12:hover:before {
+    width: 100%;
+    left:0;
+}
+

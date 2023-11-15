@@ -127,9 +127,11 @@
             {{- $is_search := eq (site.GetPage .KeyName).Layout `search` }}
             <li>
                 <a href="{{ .URL | absLangURL }}" title="{{ .Title | default .Name }} {{- cond $is_search (" (Alt + /)" | safeHTMLAttr) ("" | safeHTMLAttr ) }}"
+                    class="btn-12"
                 {{- cond $is_search (" accesskey=/" | safeHTMLAttr) ("" | safeHTMLAttr ) }}>
                     <span {{- if eq $menu_item_url $page_url }} class="active" {{- end }} 
-                    style='font-family: SUITE-Regular; font-size: 19px;'>
+                    style='font-family: SUITE-Regular; font-size: 19px;'
+                    class="">
                         {{- .Pre }}
                         {{- .Name -}}
                         {{ .Post -}}
