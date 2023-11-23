@@ -1,0 +1,147 @@
+<!-- Stack Menu CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css">
+<link rel="stylesheet" href="https://unpkg.com/css-pro-layout@1.1.0/dist/css/css-pro-layout.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&amp;display=swap">
+
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+
+{{- $currentNode := . }}
+
+<div class="layout toc-container wide-r">
+<aside id="sidebar" class="sidebar break-point-sm has-bg-image" style="width: 100%;">
+    <div class="sidebar-layout">
+		<div class="sidebar-content">
+        	<nav class="menu open-current-submenu">
+				<ul>
+{{- if eq .Site.Params.ordersectionsby "title"}}
+  {{- range .Site.Home.Sections.ByTitle}}
+  	{{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode   "level" 0}}
+  {{- end}}
+{{- else}}
+  {{- range .Site.Home.Sections.ByWeight}}
+    {{- if not (hasPrefix .Section "_") -}}
+      {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "level" 0}}
+    {{end}}
+  {{- end}}
+{{- end}}
+
+<!-- templates -->
+{{- define "section-tree-nav" }}
+{{- $currentNode := .currentnode }}
+{{- $level := .level }}
+{{- $maxlevel := 99 }}
+{{if lt $level $maxlevel }}
+	{{- with .sect}}
+		{{- if and (or .IsSection .IsPage) (or (not .Params.hidden) $.showhidden)}}
+			{{- $numberOfPages := (len (where (where .Pages "Params.subpage" "ne" true) "Params.hidden" "ne" true )) }}
+			{{$menuTitle := .Title}}
+			{{- safeHTML .Params.head}}
+			{{- if ne $numberOfPages 0 }}
+				<li class="menu-item sub-menu">
+			{{- else }}
+				<li class="menu-item">
+			{{- end }}
+			{{if eq $menuTitle ""}}{{$menuTitle = .CurrentSection}}{{end}}
+				
+			{{if eq $level 0 }}
+				<a href="#">
+					<span class="menu-icon">
+					<i class="ri-vip-diamond-fill"></i>
+					</span>
+					<span class="menu-title">{{safeHTML .Params.Pre}}{{$menuTitle}}{{safeHTML .Params.Post}}</span>
+					<span class="menu-suffix">
+					</span>
+				</a>
+			{{end}}  
+			
+			{{if gt $level 0 }}
+				<!-- <a class="link" >{{safeHTML .Params.Pre}}{{$menuTitle}}{{safeHTML .Params.Post}}
+					<i class="fa fa-chevron-down"></i>
+				</a> -->
+				{{if eq $numberOfPages 0 }}
+					<a href="{{ .RelPermalink}}">
+						<span class="menu-title">{{safeHTML .Params.Pre}}{{$menuTitle}}{{safeHTML .Params.Post}}</span>
+						<span class="menu-suffix">
+						</span>
+					</a>
+				{{else}}
+					<a href="#">
+						<span class="menu-title">{{safeHTML .Params.Pre}}{{$menuTitle}}{{safeHTML .Params.Post}}</span>
+						<span class="menu-suffix">
+						</span>
+					</a>
+				{{end}}
+			{{end}}
+				
+			{{- if ne $numberOfPages 0 }}
+				<div class="sub-menu-list" data-popper-placement="left">
+					{{- .Scratch.Set "pages" .Pages }}
+					{{- if .Sections}}
+						{{- .Scratch.Set "pages" (.Pages | union .Sections) }}
+					{{- end}}
+					{{- $pages := (.Scratch.Get "pages") }}
+
+					{{- if eq .Site.Params.ordersectionsby "title"}}
+						<ul>
+						{{- range $pages.ByTitle }}
+							{{- if and .Params.hidden (not $.showhidden) }}
+							{{- else}}
+								{{ if eq .Kind "section"}}
+									{{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "level" (add $level 1)}}
+								{{- end}}
+								{{ if eq .Kind "page"}}
+									{{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "level" (add $level 1)}}
+								{{- end}}
+							{{- end}}
+						{{- end}}
+						</ul>
+					{{- else}}
+					<ul>
+					{{- range $pages.ByWeight }}
+						{{- if and .Params.hidden (not $.showhidden) }}
+						{{- else}}
+							{{ if and (eq .Kind "section") (not .Params.subpage ) }}
+								{{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "level" (add $level 1)}}
+							{{- end}}
+						{{- end}}
+					{{- end}}
+					</ul>
+					{{- end}}
+				</div>
+			{{- end}}
+		</li>
+		{{- end}}
+		{{- end}}
+	{{- end}}
+{{- end}}
+				
+
+<ul>
+			</nav>
+		</div>
+	</div>
+	<div class="sidebar-footer">
+		<div class="footer-box">
+		  <div>
+			<!-- <img class="react-logo" src="https://user-images.githubusercontent.com/25878302/213938106-ca8f0485-3f30-4861-9188-2920ed7ab284.png" alt="react"> -->
+		  </div>
+		  <div style="padding: 0 10px">
+			<span style="display: block; margin-bottom: 10px">Pro sidebar is also available as a react package
+			</span>
+			<div style="margin-bottom: 15px">
+			  <img alt="preview badge" src="https://img.shields.io/github/stars/azouaoui-med/react-pro-sidebar?style=social">
+			</div>
+			<div>
+			  <a href="https://github.com/azouaoui-med/react-pro-sidebar" target="_blank">Check it out!</a>
+			</div>
+		  </div>
+		</div>
+	  </div>
+</aside>
+</div>
+
+<style scoped>
+</style>
+
+{{ $styles := resources.Get "scss/pro-sidebar.scss" | toCSS}}
+<link rel="stylesheet" href="{{ $styles.Permalink }}">

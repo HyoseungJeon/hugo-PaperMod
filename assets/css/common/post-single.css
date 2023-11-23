@@ -283,6 +283,19 @@
     width: var(--toc-width);
 }
 
+.toc-container.wide-r {
+    position: absolute;
+    height: 100%;
+    border-left: 1px solid var(--border);
+    right: calc((var(--toc-width) + var(--gap)) * -1);
+    top: calc(var(--gap) * 2);
+    width: var(--toc-width);
+}
+
+.toc-container.wide-r li {
+    position: sticky;
+}
+
 .wide .toc {
     position: sticky;
     top: var(--gap);

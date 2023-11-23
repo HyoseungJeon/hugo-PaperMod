@@ -119,6 +119,9 @@
 <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}">
 {{ end -}}
 
+{{- $prosidebar := resources.Get "js/pro.sidebar.js" }}
+<script defer crossorigin="anonymous" src="{{ $prosidebar.RelPermalink }}"></script>
+
 <noscript>
     <style>
         #theme-toggle,

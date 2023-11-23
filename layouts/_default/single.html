@@ -27,6 +27,10 @@
   {{- partial "toc.html" . }}
   {{- end }}
 
+  {{- if (.Param "ShowToc") }}
+  {{- partial "menu.html" . }}
+  {{- end }}
+
   {{- if .Content }}
   <div class="post-content">
     {{- if not (.Param "disableAnchoredHeadings") }}
