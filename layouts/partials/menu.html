@@ -15,7 +15,9 @@
 				<ul>
 {{- if eq .Site.Params.ordersectionsby "title"}}
   {{- range .Site.Home.Sections.ByTitle}}
-  	{{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode   "level" 0}}
+	{{- range .Sections.ByTitle}}
+  		{{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode   "level" 0}}
+	{{- end}}
   {{- end}}
 {{- else}}
   {{- range .Site.Home.Sections.ByWeight}}
@@ -55,12 +57,9 @@
 			{{end}}  
 			
 			{{if gt $level 0 }}
-				<!-- <a class="link" >{{safeHTML .Params.Pre}}{{$menuTitle}}{{safeHTML .Params.Post}}
-					<i class="fa fa-chevron-down"></i>
-				</a> -->
 				{{if eq $numberOfPages 0 }}
 					<a href="{{ .RelPermalink}}">
-						<span class="menu-title">{{safeHTML .Params.Pre}}{{$menuTitle}}{{safeHTML .Params.Post}}</span>
+						<span class="menu-title">• {{safeHTML .Params.Pre}}{{$menuTitle}}{{safeHTML .Params.Post}}</span>
 						<span class="menu-suffix">
 						</span>
 					</a>
