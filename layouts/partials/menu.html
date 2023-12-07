@@ -16,7 +16,10 @@
 {{- if eq .Site.Params.ordersectionsby "title"}}
   {{- range .Site.Home.Sections.ByTitle}}
 	{{- range .Sections.ByTitle}}
-  		{{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode   "level" 0}}
+		{{- $numberOfPages := (len (where (where .Pages "Params.subpage" "ne" true) "Params.hidden" "ne" true )) }}
+		{{- if ne $numberOfPages 0 }}
+			{{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode   "level" 0}}
+		{{- end}}
 	{{- end}}
   {{- end}}
 {{- else}}
