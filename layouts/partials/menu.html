@@ -7,7 +7,7 @@
 
 {{- $currentNode := . }}
 
-<div class="layout toc-container wide-r">
+<div id="menu-container" class="layout toc-container wide-r">
 <aside id="sidebar" class="sidebar break-point-sm has-bg-image" style="width: 100%;">
     <div class="sidebar-layout">
 		<div class="sidebar-content">
@@ -147,3 +147,29 @@
 
 {{ $styles := resources.Get "scss/pro-sidebar.scss" | toCSS}}
 <link rel="stylesheet" href="{{ $styles.Permalink }}">
+
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+	const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("menu-container").style.display = ''
+        } else {
+            document.getElementById("menu-container").style.display = 'none'
+        }
+    }
+</script>

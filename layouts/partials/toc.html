@@ -141,8 +141,10 @@
 
         if (width - main - (toc * 2) - (gap * 4) > 0) {
             document.getElementById("toc-container").classList.add("wide");
+            document.getElementById("menu-container").style.display = ''
         } else {
             document.getElementById("toc-container").classList.remove("wide");
+            document.getElementById("menu-container").style.display = 'none'
         }
     }
 
