@@ -76,9 +76,11 @@
     font-family: SUITE-Regular;
 }
 
-.post-content a,
+.post-content a {
+    text-decoration: underline;
+}
 
-.toc a {
+.post-content .toc a {
     transition: 200ms;
 }
 
