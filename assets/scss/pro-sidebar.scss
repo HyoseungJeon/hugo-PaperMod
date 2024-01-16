@@ -181,6 +181,10 @@ $sidebar-footer-height: 230px;
             white-space: nowrap;
             flex-grow: 1;
             transition: color 0.3s;
+            .menu-title-suffix {
+              font-size: 0.8em;
+              color: var(--secondary);
+            }
           }
           .menu-prefix,
           .menu-suffix {

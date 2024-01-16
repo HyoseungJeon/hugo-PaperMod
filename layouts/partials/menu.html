@@ -51,9 +51,11 @@
 			{{if eq $level 0 }}
 				<a href="#">
 					<span class="menu-icon">
-					<i class="ri-vip-diamond-fill"></i>
+					<i class="ri-book-line"></i>
 					</span>
-					<span class="menu-title">{{safeHTML .Params.Pre}}{{$menuTitle}}{{safeHTML .Params.Post}}</span>
+					<span class="menu-title">{{safeHTML .Params.Pre}}{{$menuTitle}}{{safeHTML .Params.Post}}
+						<span class="menu-title-suffix">({{$numberOfPages}})</span>
+					</span>
 					<span class="menu-suffix">
 					</span>
 				</a>
@@ -62,13 +64,21 @@
 			{{if gt $level 0 }}
 				{{if eq $numberOfPages 0 }}
 					<a href="{{ .RelPermalink}}">
-						<span class="menu-title">• {{safeHTML .Params.Pre}}{{$menuTitle}}{{safeHTML .Params.Post}}</span>
+						<span class="menu-icon">
+							<i class="ri-sticky-note-fill"></i>
+						</span>
+						<span class="menu-title">{{safeHTML .Params.Pre}}{{$menuTitle}}{{safeHTML .Params.Post}}</span>
 						<span class="menu-suffix">
 						</span>
 					</a>
 				{{else}}
 					<a href="#">
-						<span class="menu-title">{{safeHTML .Params.Pre}}{{$menuTitle}}{{safeHTML .Params.Post}}</span>
+						<span class="menu-icon">
+							<i class="ri-book-line"></i>
+						</span>
+						<span class="menu-title">{{safeHTML .Params.Pre}}{{$menuTitle}}{{safeHTML .Params.Post}}
+							<span class="menu-title-suffix">({{$numberOfPages}})</span>
+						</span>
 						<span class="menu-suffix">
 						</span>
 					</a>
