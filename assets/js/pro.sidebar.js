@@ -251,3 +251,14 @@ INNER_SUB_MENUS_BTN.forEach((element) => {
     slideToggle(element.nextElementSibling);
   });
 });
+
+const paths = window.location.pathname.split('/')
+for (let i = 2 ; i < paths.length - 1 ; i++) {
+  const menuName = paths[i]
+  const menus = document.getElementsByClassName('menu-item sub-menu')
+  for (let j = 0 ; j < menus.length ; j++) {
+    if (menus[j].dataset?.level == i - 2 && menus[j].attributes.name.value.replaceAll(' ','').toLowerCase() == menuName) {
+      menus[j].childNodes[0].click()
+    }
+  }
+}

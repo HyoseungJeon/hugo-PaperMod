@@ -42,9 +42,9 @@
 			{{$menuTitle := .Title}}
 			{{- safeHTML .Params.head}}
 			{{- if ne $numberOfPages 0 }}
-				<li class="menu-item sub-menu">
+				<li class="menu-item sub-menu" name={{$menuTitle}} data-level={{$level}}>
 			{{- else }}
-				<li class="menu-item">
+				<li class="menu-item" data-level={{$level}}>
 			{{- end }}
 			{{if eq $menuTitle ""}}{{$menuTitle = .CurrentSection}}{{end}}
 				
@@ -63,7 +63,7 @@
 			
 			{{if gt $level 0 }}
 				{{if eq $numberOfPages 0 }}
-					<a href="{{ .RelPermalink}}">
+					<a href="{{ .RelPermalink}}" class="page">
 						<span class="menu-icon">
 							<i class="ri-sticky-note-fill"></i>
 						</span>
