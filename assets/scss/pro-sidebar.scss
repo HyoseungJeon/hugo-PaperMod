@@ -208,6 +208,9 @@ $sidebar-footer-height: 230px;
             }
           }
         }
+        .page {
+          height: 40px !important;
+        }
 
         &.sub-menu {
           position: relative;
