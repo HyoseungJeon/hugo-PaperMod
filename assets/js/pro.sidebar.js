@@ -252,13 +252,15 @@ INNER_SUB_MENUS_BTN.forEach((element) => {
   });
 });
 
-const paths = window.location.pathname.split('/')
-for (let i = 2 ; i < paths.length - 1 ; i++) {
-  const menuName = paths[i]
-  const menus = document.getElementsByClassName('menu-item sub-menu')
-  for (let j = 0 ; j < menus.length ; j++) {
-    if (menus[j].dataset?.level == i - 2 && menus[j].attributes.name.value.replaceAll(' ','').toLowerCase() == menuName) {
-      menus[j].childNodes[0].click()
+const menuElements = $('.menu-item');
+menuElements.each((index, el) => {
+  const paths = el.baseURI.split('/');
+  const level = parseInt(el.getAttribute('data-level'), 10);
+  if (paths[level + 4] == el.getAttribute('name').replaceAll(' ', '').toLowerCase()) {
+    if ($(el).hasClass('sub-menu')) {
+      el.childNodes[0].click()
+    } else if ($(el).hasClass('page-menu')) {
+      $(el).addClass('active');
     }
   }
-}
+});
